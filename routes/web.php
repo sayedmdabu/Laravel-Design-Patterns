@@ -18,4 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/category', [CategoryController::class, 'index']);
+Route::get('/category', [CategoryController::class, 'index'])->name('category.list');
+Route::post('/category-store', [CategoryController::class, 'store'])->name('category.store');

@@ -18,4 +18,15 @@ class CategoryController extends Controller
         // dd($category);
         return view('category.index',compact('categories'));
     }
+
+    public function store(Request $request){
+        // validate data
+        $data = $request->validate([
+            'category_name' => 'required|unique:categories,category_name|max:200'
+        ]);
+
+        $this->categoryRepositor->storeCategory($data);
+
+        return redirect()->route('category.list')->withSuccess('Category created successfully');
+    }
 }
